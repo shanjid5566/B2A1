@@ -35,4 +35,24 @@ class Person {
   }
 }
 
+type Item = {
+  title: string;
+  rating: number;
+};
+const filterByRating = (items: Item[]): Item[] => {
+  return items.reduce((IndivisualItem: Item[], item: Item) => {
+    if (item.rating >= 4) {
+      IndivisualItem.push(item);
+    }
+    return IndivisualItem;
+  }, []);
 
+};
+
+const products: Item[] = [
+  { title: "Item A", rating: 4.5 },
+  { title: "Item B", rating: 3.8 },
+  { title: "Item C", rating: 5 },
+];
+const filteredProducts = filterByRating(products);
+console.log(filteredProducts);
