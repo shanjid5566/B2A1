@@ -10,6 +10,29 @@ const formatValue = (value: FormatValue): FormatValue => {
   }
   return value;
 };
-console.log(formatValue("hello"));
-console.log(formatValue(50));
-console.log(formatValue(false));
+
+type GetLength = string | number[];
+
+const getLength = (value: GetLength): number => {
+  if (typeof value === "string") {
+    return value.length;
+  } else {
+    return value.length;
+  }
+};
+
+class Person {
+  name: string;
+  age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+
+  getDetails(): string {
+    return `Name: ${this.name}, Age: ${this.age}`;
+  }
+}
+
+
