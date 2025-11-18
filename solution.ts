@@ -109,3 +109,24 @@ const getUniqueValues: GetUniqueValues = (firstArray, secondArray) => {
     return acc;
   }, [] as (number | string)[]);
 };
+
+interface Product {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+}
+
+interface CalculateTotalPrice {
+  (products: Product[]): number;
+}
+
+const calculateTotalPrice: CalculateTotalPrice = (products) => {
+  return products.reduce((total, product) => {
+    const baseTotal = product.price * product.quantity;
+    const discount = product.discount ? product.discount / 100 : 0;
+    const finalPrice = baseTotal - baseTotal * discount;
+
+    return total + finalPrice;
+  }, 0);
+};
