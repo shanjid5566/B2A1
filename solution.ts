@@ -46,7 +46,6 @@ const filterByRating = (items: Item[]): Item[] => {
     }
     return IndivisualItem;
   }, []);
-
 };
 
 const products: Item[] = [
@@ -55,4 +54,21 @@ const products: Item[] = [
   { title: "Item C", rating: 5 },
 ];
 const filteredProducts = filterByRating(products);
-console.log(filteredProducts);
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+};
+const filterActiveUsers = (users: User[]): User[] => {
+  return users.reduce((singleUser: User[], user: User) => {
+    if (user.isActive) {
+      singleUser.push(user);
+    }
+    return singleUser;
+  }, []);
+};
+
+
+
