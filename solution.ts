@@ -40,11 +40,11 @@ type Item = {
   rating: number;
 };
 const filterByRating = (items: Item[]): Item[] => {
-  return items.reduce((IndivisualItem: Item[], item: Item) => {
+  return items.reduce((acc: Item[], item: Item) => {
     if (item.rating >= 4) {
-      IndivisualItem.push(item);
+      acc.push(item);
     }
-    return IndivisualItem;
+    return acc;
   }, []);
 };
 
@@ -62,11 +62,11 @@ type User = {
   isActive: boolean;
 };
 const filterActiveUsers = (users: User[]): User[] => {
-  return users.reduce((singleUser: User[], user: User) => {
+  return users.reduce((acc: User[], user: User) => {
     if (user.isActive) {
-      singleUser.push(user);
+      acc.push(user);
     }
-    return singleUser;
+    return acc;
   }, []);
 };
 
@@ -88,3 +88,24 @@ const myBook: Book = {
   isAvailable: false,
 };
 
+interface GetUniqueValues {
+  (firstArray: (number | string)[], secondArray: (number | string)[]): (
+    | number
+    | string
+  )[];
+}
+
+const getUniqueValues: GetUniqueValues = (firstArray, secondArray) => {
+  const merged = [...firstArray, ...secondArray];
+  const seen = new Set<number | string>();
+
+  return merged.reduce((acc, item) => {
+    if (!seen.has(item)) {
+      console.log(item, "h");
+      seen.add(item);
+      acc.push(item);
+    }
+
+    return acc;
+  }, [] as (number | string)[]);
+};
